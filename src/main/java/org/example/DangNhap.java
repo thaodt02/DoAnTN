@@ -27,7 +27,7 @@ public class DangNhap {
     public void TC01(){
         System.out.println("Hello");
         chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
+        sleep(10000);
         WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
         button.click();
         WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
@@ -40,9 +40,18 @@ public class DangNhap {
         btnDN.click();
     }
 
+    @Test
+    public void TC02(){
+        System.out.println("Hello");
+        chromeDriver.get("http://localhost:3000/");
+        sleep(10000);
+        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
+        button.click();
+    }
+
     @AfterMethod
     public void Cleanup(){
-        //  chromeDriver.quit();
+        chromeDriver.quit();
         System.out.println("bye");
     }
 
