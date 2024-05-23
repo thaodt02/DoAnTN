@@ -11,6 +11,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 public class TimKiemCVTheoKyNangDiaDiem {
     ChromeDriver chromeDriver;
 
@@ -25,189 +28,147 @@ public class TimKiemCVTheoKyNangDiaDiem {
     }
 
     @Test
-    public void TC01(){
-        System.out.println("Hello");
+    public void TC01()
+    {
         chromeDriver.get("http://localhost:3000/");
         sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
+        WebElement inSearch = chromeDriver.findElement(By.className("ant-form-item-control-input"));
+        //WebElement inAddr = chromeDriver.findElement(By.className("ant-form-item-control-input"));
+        WebElement btnSearch = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[1]/form/div/div[4]/button/span"));
+       // WebElement btnSearch = chromeDriver.findElement(By.name("Search"));
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin@gmail.com").build().perform();
-        action.sendKeys(txtPass, "123456").build().perform();
-        btnDN.click();
-        sleep(10000);
+        action.sendKeys(inSearch, "ReactJS").build().perform();
+       // action.sendKeys(inAddr, "123456").build().perform();
+        sleep(5000);
+        btnSearch.click();
+        sleep(5000);
+
+        // Đợi trang kết quả tải
+        chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        // Kiểm tra có kết quả trả về
+        List<WebElement> results = chromeDriver.findElements(By.cssSelector("div.result"));
+        Assert.assertTrue(results.size() > 0, "No results found.");
     }
 
     @Test
-    public void TC02(){
+    public void TC02()
+    {
         chromeDriver.get("http://localhost:3000/");
         sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
+        WebElement inSearch = chromeDriver.findElement(By.className("ant-form-item-control-input"));
+        //WebElement inAddr = chromeDriver.findElement(By.className("ant-form-item-control-input"));
+        WebElement btnSearch = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[1]/form/div/div[4]/button/span"));
+        // WebElement btnSearch = chromeDriver.findElement(By.name("Search"));
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "").build().perform();
-        action.sendKeys(txtPass, "123456").build().perform();
-        btnDN.click();
-        //WebElement lbStatusMail1 = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[1]/div[1]/div[2]/div[2]/div[1]/div"));
-        WebElement lbStatusMail = chromeDriver.findElement(By.className("ant-form-item-explain-error"));
-        String lbStatusMailValue = lbStatusMail.getText();
-        Assert.assertEquals(lbStatusMailValue, "Email khong duoc de trong!");
-        sleep(10000);
+        action.sendKeys(inSearch, "React").build().perform();
+        sleep(5000);
+        // action.sendKeys(inAddr, "123456").build().perform();
+        btnSearch.click();
+        sleep(5000);
+
+        // Đợi trang kết quả tải
+        chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        // Kiểm tra có kết quả trả về
+        List<WebElement> results = chromeDriver.findElements(By.cssSelector("div.result"));
+        Assert.assertTrue(results.size() > 0, "No results found.");
     }
 
     @Test
-    public void TC03(){
+    public void TC03()
+    {
         chromeDriver.get("http://localhost:3000/");
         sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
+        WebElement inSearch = chromeDriver.findElement(By.className("ant-form-item-control-input"));
+       // WebElement inAddr = chromeDriver.findElement(By.className("ant-form-item-control-input"));
+        WebElement btnSearch = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[1]/form/div/div[4]/button/span"));
+        // WebElement btnSearch = chromeDriver.findElement(By.name("Search"));
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin").build().perform();
-        action.sendKeys(txtPass, "123456").build().perform();
-        btnDN.click();
+        action.sendKeys(inSearch, "Auto testing").build().perform();
         sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Email nhap vao khong dung dinh dang");
-        sleep(10000);
+        // action.sendKeys(inAddr, "123456").build().perform();
+        btnSearch.click();
+        sleep(5000);
+
+        // Đợi trang kết quả tải
+        chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        // Kiểm tra có kết quả trả về
+        List<WebElement> results = chromeDriver.findElements(By.cssSelector("div.result"));
+        Assert.assertTrue(results.size() > 0, "No results found.");
     }
 
     @Test
-    public void TC04(){
+    public void TC04()
+    {
         chromeDriver.get("http://localhost:3000/");
         sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
+       // WebElement inSearch = chromeDriver.findElement(By.className("ant-form-item-control-input"));
+        WebElement inAddr = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div[1]/form/div/div[3]/div/div"));
+        WebElement btnSearch = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[1]/form/div/div[4]/button/span"));
+        // WebElement btnSearch = chromeDriver.findElement(By.name("Search"));
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "thao@gmail.com").build().perform();
-        action.sendKeys(txtPass, "123456").build().perform();
-        btnDN.click();
+        action.sendKeys(inAddr, "Ha Noi").build().perform();
         sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Email khong hop le");
-        sleep(10000);
+        // action.sendKeys(inAddr, "123456").build().perform();
+        btnSearch.click();
+        sleep(5000);
+
+        // Đợi trang kết quả tải
+        chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        // Kiểm tra có kết quả trả về
+        List<WebElement> results = chromeDriver.findElements(By.cssSelector("div.result"));
+        Assert.assertTrue(results.size() > 0, "No results found.");
     }
 
     @Test
-    public void TC05(){
+    public void TC05()
+    {
         chromeDriver.get("http://localhost:3000/");
         sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
+        // WebElement inSearch = chromeDriver.findElement(By.className("ant-form-item-control-input"));
+        WebElement inAddr = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div[1]/form/div/div[3]/div/div"));
+        WebElement btnSearch = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[1]/form/div/div[4]/button/span"));
+        // WebElement btnSearch = chromeDriver.findElement(By.name("Search"));
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin@gmail.com").build().perform();
-        action.sendKeys(txtPass, "").build().perform();
-        btnDN.click();
-        //WebElement lbStatusPass1 = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[1]/div[1]/div[2]/div[2]/div[1]/div"));
-        WebElement lbStatusPass = chromeDriver.findElement(By.className("ant-form-item-explain-error"));
-        String lbStatusPassValue = lbStatusPass.getText();
-        Assert.assertEquals(lbStatusPassValue, "Mat khau khong duoc de trong!");
-        sleep(10000);
+        action.sendKeys(inAddr, "Ha").build().perform();
+        sleep(5000);
+        // action.sendKeys(inAddr, "123456").build().perform();
+        btnSearch.click();
+        sleep(5000);
+
+        // Đợi trang kết quả tải
+        chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        // Kiểm tra có kết quả trả về
+        List<WebElement> results = chromeDriver.findElements(By.cssSelector("div.result"));
+        Assert.assertTrue(results.size() > 0, "No results found.");
     }
 
     @Test
-    public void TC06(){
+    public void TC06()
+    {
         chromeDriver.get("http://localhost:3000/");
         sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
+        // WebElement inSearch = chromeDriver.findElement(By.className("ant-form-item-control-input"));
+        WebElement inAddr = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div[1]/form/div/div[3]/div/div"));
+        WebElement btnSearch = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[1]/form/div/div[4]/button/span"));
+        // WebElement btnSearch = chromeDriver.findElement(By.name("Search"));
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin@gmail.com").build().perform();
-        action.sendKeys(txtPass, " 123456 ").build().perform();
-        btnDN.click();
+        action.sendKeys(inAddr, "Han Quoc").build().perform();
         sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-form-item-explain-error"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Mat khau nhap vao khong dung");
-        sleep(10000);
-    }
+        // action.sendKeys(inAddr, "123456").build().perform();
+        btnSearch.click();
+        sleep(5000);
 
-    @Test
-    public void TC07(){
-        chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
+        // Đợi trang kết quả tải
+        chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin@gmail.com").build().perform();
-        action.sendKeys(txtPass, "12345678").build().perform();
-        btnDN.click();
-        sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Mat khau nhap vao khong dung");
-        sleep(10000);
-    }
-
-    @Test
-    public void TC08(){
-        chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
-        Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin123@gmail.com").build().perform();
-        action.sendKeys(txtPass, "12345678").build().perform();
-        btnDN.click();
-        sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Email va mat khau nhap vao khong dung");
-        sleep(10000);
-    }
-
-    @Test
-    public void TC09(){
-        chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
-        Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin123@gmail.com").build().perform();
-        action.sendKeys(txtPass, "123456").build().perform();
-        btnDN.click();
-        sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Email nhap vao khong dung");
-        sleep(10000);
+        // Kiểm tra có kết quả trả về
+        List<WebElement> results = chromeDriver.findElements(By.cssSelector("div.result"));
+        Assert.assertTrue(results.size() > 0, "No results found.");
     }
 
     @AfterMethod

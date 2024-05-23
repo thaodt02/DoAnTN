@@ -11,6 +11,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+import java.util.List;
+
 public class NopCVUngTuyen {
     ChromeDriver chromeDriver;
 
@@ -25,10 +28,9 @@ public class NopCVUngTuyen {
     }
 
     @Test
-    public void TC01(){
-        System.out.println("Hello");
+    public void TC01() throws IOException {
         chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
+        sleep(2000);
         WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
         button.click();
         WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
@@ -36,16 +38,41 @@ public class NopCVUngTuyen {
         WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
 
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin@gmail.com").build().perform();
+        action.sendKeys(txtEmail, "abcd@gmail.com").build().perform();
         action.sendKeys(txtPass, "123456").build().perform();
         btnDN.click();
-        sleep(10000);
+        sleep(2000);
+
+        WebElement btnJobIT = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/ul/li[2]/span[2]/a"));
+        btnJobIT.click();
+        sleep(5000);
+        WebElement AJobIT = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[3]/div"));
+        AJobIT.click();
+        sleep(5000);
+        WebElement btnApply = chromeDriver.findElement(By.className("_btn-apply_db591_201"));
+        btnApply.click();
+        sleep(5000);
+
+        WebElement inputCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/form/div/div[3]/div/div/div[2]/div/div/span/div[1]/span/button/span[2]"));
+        inputCV.click();
+        sleep(5000);
+        // Gọi script AutoIt để upload file
+        Runtime.getRuntime().exec("D:\\1.DoAnTN\\File_AutoIT\\uploadCVdangdoc.exe");
+        sleep(5000);
+        WebElement btnGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]"));
+        sleep(3000);
+        btnGuiCV.click();
+        sleep(3000);
+
+        WebElement mesGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/span[2]"));
+        String lbmesGuiCVlValue = mesGuiCV.getText();
+        Assert.assertEquals(lbmesGuiCVlValue, "Gui CV thanh cong!");
     }
 
     @Test
-    public void TC02(){
+    public void TC02() throws IOException {
         chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
+        sleep(2000);
         WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
         button.click();
         WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
@@ -53,20 +80,42 @@ public class NopCVUngTuyen {
         WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
 
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "").build().perform();
+        action.sendKeys(txtEmail, "abcd@gmail.com").build().perform();
         action.sendKeys(txtPass, "123456").build().perform();
         btnDN.click();
-        //WebElement lbStatusMail1 = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[1]/div[1]/div[2]/div[2]/div[1]/div"));
-        WebElement lbStatusMail = chromeDriver.findElement(By.className("ant-form-item-explain-error"));
-        String lbStatusMailValue = lbStatusMail.getText();
-        Assert.assertEquals(lbStatusMailValue, "Email khong duoc de trong!");
-        sleep(10000);
+        sleep(2000);
+
+        WebElement btnJobIT = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/ul/li[2]/span[2]/a"));
+        btnJobIT.click();
+        sleep(5000);
+        WebElement AJobIT = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[3]/div"));
+        AJobIT.click();
+        sleep(5000);
+        WebElement btnApply = chromeDriver.findElement(By.className("_btn-apply_db591_201"));
+        btnApply.click();
+        sleep(5000);
+
+        WebElement inputCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/form/div/div[3]/div/div/div[2]/div/div/span/div[1]/span/button/span[2]"));
+        inputCV.click();
+        sleep(5000);
+        // Gọi script AutoIt để upload file
+        Runtime.getRuntime().exec("D:\\1.DoAnTN\\File_AutoIT\\uploadCVdangdocx.exe");
+        sleep(5000);
+        WebElement btnGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]"));
+        sleep(3000);
+        btnGuiCV.click();
+        sleep(3000);
+
+        WebElement mesGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/span[2]"));
+        String lbmesGuiCVlValue = mesGuiCV.getText();
+        Assert.assertEquals(lbmesGuiCVlValue, "Gui CV thanh cong!");
     }
 
     @Test
-    public void TC03(){
+    public void TC03() throws IOException
+    {
         chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
+        sleep(2000);
         WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
         button.click();
         WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
@@ -74,20 +123,42 @@ public class NopCVUngTuyen {
         WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
 
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin").build().perform();
+        action.sendKeys(txtEmail, "abcd@gmail.com").build().perform();
         action.sendKeys(txtPass, "123456").build().perform();
         btnDN.click();
+        sleep(2000);
+
+        WebElement btnJobIT = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/ul/li[2]/span[2]/a"));
+        btnJobIT.click();
         sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Email nhap vao khong dung dinh dang");
-        sleep(10000);
+        WebElement AJobIT = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[3]/div"));
+        AJobIT.click();
+        sleep(5000);
+        WebElement btnApply = chromeDriver.findElement(By.className("_btn-apply_db591_201"));
+        btnApply.click();
+        sleep(5000);
+
+        WebElement inputCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/form/div/div[3]/div/div/div[2]/div/div/span/div[1]/span/button/span[2]"));
+        inputCV.click();
+        sleep(5000);
+        // Gọi script AutoIt để upload file
+        Runtime.getRuntime().exec("D:\\1.DoAnTN\\File_AutoIT\\uploadCVdangpdf.exe");
+        sleep(5000);
+        WebElement btnGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]"));
+        sleep(3000);
+        btnGuiCV.click();
+        sleep(3000);
+
+        WebElement mesGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/span[2]"));
+        String lbmesGuiCVlValue = mesGuiCV.getText();
+        Assert.assertEquals(lbmesGuiCVlValue, "Gui CV thanh cong!");
     }
 
     @Test
-    public void TC04(){
+    public void TC04() throws IOException
+    {
         chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
+        sleep(2000);
         WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
         button.click();
         WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
@@ -95,20 +166,42 @@ public class NopCVUngTuyen {
         WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
 
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "thao@gmail.com").build().perform();
+        action.sendKeys(txtEmail, "abcd@gmail.com").build().perform();
         action.sendKeys(txtPass, "123456").build().perform();
         btnDN.click();
+        sleep(2000);
+
+        WebElement btnJobIT = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/ul/li[2]/span[2]/a"));
+        btnJobIT.click();
         sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Email khong hop le");
-        sleep(10000);
+        WebElement AJobIT = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[3]/div"));
+        AJobIT.click();
+        sleep(5000);
+        WebElement btnApply = chromeDriver.findElement(By.className("_btn-apply_db591_201"));
+        btnApply.click();
+        sleep(5000);
+
+        WebElement inputCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/form/div/div[3]/div/div/div[2]/div/div/span/div[1]/span/button/span[2]"));
+        inputCV.click();
+        sleep(5000);
+        // Gọi script AutoIt để upload file
+        Runtime.getRuntime().exec("D:\\1.DoAnTN\\File_AutoIT\\uploadCVdangtxt.exe");
+        sleep(5000);
+        WebElement btnGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]"));
+        sleep(3000);
+        btnGuiCV.click();
+        sleep(3000);
+
+        WebElement mesGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[3]/div/div/div/div/span[2]"));
+        String lbmesGuiCVlValue = mesGuiCV.getText();
+        Assert.assertEquals(lbmesGuiCVlValue, "Invalid file type");
     }
 
     @Test
-    public void TC05(){
+    public void TC05() throws IOException
+    {
         chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
+        sleep(2000);
         WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
         button.click();
         WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
@@ -116,98 +209,249 @@ public class NopCVUngTuyen {
         WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
 
         Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin@gmail.com").build().perform();
-        action.sendKeys(txtPass, "").build().perform();
-        btnDN.click();
-        //WebElement lbStatusPass1 = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[1]/div[1]/div[2]/div[2]/div[1]/div"));
-        WebElement lbStatusPass = chromeDriver.findElement(By.className("ant-form-item-explain-error"));
-        String lbStatusPassValue = lbStatusPass.getText();
-        Assert.assertEquals(lbStatusPassValue, "Mat khau khong duoc de trong!");
-        sleep(10000);
-    }
-
-    @Test
-    public void TC06(){
-        chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
-        Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin@gmail.com").build().perform();
-        action.sendKeys(txtPass, " 123456 ").build().perform();
-        btnDN.click();
-        sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-form-item-explain-error"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Mat khau nhap vao khong dung");
-        sleep(10000);
-    }
-
-    @Test
-    public void TC07(){
-        chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
-        Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin@gmail.com").build().perform();
-        action.sendKeys(txtPass, "12345678").build().perform();
-        btnDN.click();
-        sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Mat khau nhap vao khong dung");
-        sleep(10000);
-    }
-
-    @Test
-    public void TC08(){
-        chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
-        Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin123@gmail.com").build().perform();
-        action.sendKeys(txtPass, "12345678").build().perform();
-        btnDN.click();
-        sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Email va mat khau nhap vao khong dung");
-        sleep(10000);
-    }
-
-    @Test
-    public void TC09(){
-        chromeDriver.get("http://localhost:3000/");
-        sleep(5000);
-        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
-        button.click();
-        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
-        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
-
-        Actions action = new Actions(chromeDriver);
-        action.sendKeys(txtEmail, "admin123@gmail.com").build().perform();
+        action.sendKeys(txtEmail, "abcd@gmail.com").build().perform();
         action.sendKeys(txtPass, "123456").build().perform();
         btnDN.click();
+        sleep(2000);
+
+        WebElement btnJobIT = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/ul/li[2]/span[2]/a"));
+        btnJobIT.click();
         sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
-        String lbMessageValue = lbMessage.getText();
-        Assert.assertEquals(lbMessageValue, "Email nhap vao khong dung");
-        sleep(10000);
+        WebElement AJobIT = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[3]/div"));
+        AJobIT.click();
+        sleep(5000);
+        WebElement btnApply = chromeDriver.findElement(By.className("_btn-apply_db591_201"));
+        btnApply.click();
+        sleep(5000);
+
+        WebElement inputCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/form/div/div[3]/div/div/div[2]/div/div/span/div[1]/span/button/span[2]"));
+        inputCV.click();
+        sleep(5000);
+        // Gọi script AutoIt để upload file
+        Runtime.getRuntime().exec("D:\\1.DoAnTN\\File_AutoIT\\uploadCVdangpptx.exe");
+        sleep(5000);
+        WebElement btnGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]"));
+        sleep(3000);
+        btnGuiCV.click();
+        sleep(3000);
+
+        WebElement mesGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[3]/div/div/div/div/span[2]"));
+        String lbmesGuiCVlValue = mesGuiCV.getText();
+        Assert.assertEquals(lbmesGuiCVlValue, "Invalid file type");
+    }
+
+    @Test
+    public void TC06() throws IOException {
+        chromeDriver.get("http://localhost:3000/");
+        sleep(2000);
+        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
+        button.click();
+        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
+        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
+        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
+
+        Actions action = new Actions(chromeDriver);
+        action.sendKeys(txtEmail, "abcd@gmail.com").build().perform();
+        action.sendKeys(txtPass, "123456").build().perform();
+        btnDN.click();
+        sleep(2000);
+
+        WebElement btnJobIT = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/ul/li[2]/span[2]/a"));
+        btnJobIT.click();
+        sleep(5000);
+        WebElement AJobIT = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[3]/div"));
+        AJobIT.click();
+        sleep(5000);
+        WebElement btnApply = chromeDriver.findElement(By.className("_btn-apply_db591_201"));
+        btnApply.click();
+        sleep(5000);
+
+        WebElement inputCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/form/div/div[3]/div/div/div[2]/div/div/span/div[1]/span/button/span[2]"));
+        inputCV.click();
+        sleep(5000);
+        // Gọi script AutoIt để upload file
+        Runtime.getRuntime().exec("D:\\1.DoAnTN\\File_AutoIT\\uploadCVdangexcel.exe");
+        sleep(5000);
+        WebElement btnGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]"));
+        sleep(3000);
+        btnGuiCV.click();
+        sleep(3000);
+
+        WebElement mesGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[3]/div/div/div/div/span[2]"));
+        String lbmesGuiCVlValue = mesGuiCV.getText();
+        Assert.assertEquals(lbmesGuiCVlValue, "Invalid file type");
+    }
+
+    @Test
+    public void TC07() throws IOException
+    {
+        chromeDriver.get("http://localhost:3000/");
+        sleep(2000);
+        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
+        button.click();
+        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
+        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
+        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
+
+        Actions action = new Actions(chromeDriver);
+        action.sendKeys(txtEmail, "abcd@gmail.com").build().perform();
+        action.sendKeys(txtPass, "123456").build().perform();
+        btnDN.click();
+        sleep(2000);
+
+        WebElement btnJobIT = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/ul/li[2]/span[2]/a"));
+        btnJobIT.click();
+        sleep(5000);
+        WebElement AJobIT = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[3]/div"));
+        AJobIT.click();
+        sleep(5000);
+        WebElement btnApply = chromeDriver.findElement(By.className("_btn-apply_db591_201"));
+        btnApply.click();
+        sleep(5000);
+
+        WebElement inputCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/form/div/div[3]/div/div/div[2]/div/div/span/div[1]/span/button/span[2]"));
+        inputCV.click();
+        sleep(5000);
+        // Gọi script AutoIt để upload file
+        Runtime.getRuntime().exec("D:\\1.DoAnTN\\File_AutoIT\\uploadCVnhohon5mb.exe");
+        sleep(5000);
+        WebElement btnGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]"));
+        sleep(3000);
+        btnGuiCV.click();
+        sleep(3000);
+
+        WebElement mesGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/span[2]"));
+        String lbmesGuiCVlValue = mesGuiCV.getText();
+        Assert.assertEquals(lbmesGuiCVlValue, "Gui CV thanh cong!");
+    }
+
+    @Test
+    public void TC08() throws IOException
+    {
+        chromeDriver.get("http://localhost:3000/");
+        sleep(2000);
+        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
+        button.click();
+        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
+        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
+        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
+
+        Actions action = new Actions(chromeDriver);
+        action.sendKeys(txtEmail, "abcd@gmail.com").build().perform();
+        action.sendKeys(txtPass, "123456").build().perform();
+        btnDN.click();
+        sleep(2000);
+
+        WebElement btnJobIT = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/ul/li[2]/span[2]/a"));
+        btnJobIT.click();
+        sleep(5000);
+        WebElement AJobIT = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[3]/div"));
+        AJobIT.click();
+        sleep(5000);
+        WebElement btnApply = chromeDriver.findElement(By.className("_btn-apply_db591_201"));
+        btnApply.click();
+        sleep(5000);
+
+        WebElement inputCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/form/div/div[3]/div/div/div[2]/div/div/span/div[1]/span/button/span[2]"));
+        inputCV.click();
+        sleep(5000);
+        // Gọi script AutoIt để upload file
+        Runtime.getRuntime().exec("D:\\1.DoAnTN\\File_AutoIT\\uploadCVbang5mb.exe");
+        sleep(5000);
+        //WebElement btnGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]"));
+        //sleep(3000);
+        //btnGuiCV.click();
+        //sleep(3000);
+
+        WebElement mesGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[3]/div/div/div/div/span[2]"));
+        String lbmesGuiCVlValue = mesGuiCV.getText();
+        Assert.assertEquals(lbmesGuiCVlValue, "File too large");
+    }
+
+    @Test
+    public void TC09() throws IOException
+    {
+        chromeDriver.get("http://localhost:3000/");
+        sleep(2000);
+        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
+        button.click();
+        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
+        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
+        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
+
+        Actions action = new Actions(chromeDriver);
+        action.sendKeys(txtEmail, "abcd@gmail.com").build().perform();
+        action.sendKeys(txtPass, "123456").build().perform();
+        btnDN.click();
+        sleep(2000);
+
+        WebElement btnJobIT = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/ul/li[2]/span[2]/a"));
+        btnJobIT.click();
+        sleep(5000);
+        WebElement AJobIT = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[3]/div"));
+        AJobIT.click();
+        sleep(5000);
+        WebElement btnApply = chromeDriver.findElement(By.className("_btn-apply_db591_201"));
+        btnApply.click();
+        sleep(5000);
+
+        WebElement inputCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/form/div/div[3]/div/div/div[2]/div/div/span/div[1]/span/button/span[2]"));
+        inputCV.click();
+        sleep(5000);
+        // Gọi script AutoIt để upload file
+        Runtime.getRuntime().exec("D:\\1.DoAnTN\\File_AutoIT\\uploadCVhon5mb.exe");
+        sleep(5000);
+        //WebElement btnGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]"));
+        //sleep(3000);
+        //btnGuiCV.click();
+        //sleep(3000);
+
+        WebElement mesGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[3]/div/div/div/div/span[2]"));
+        String lbmesGuiCVlValue = mesGuiCV.getText();
+        Assert.assertEquals(lbmesGuiCVlValue, "File too large");
+    }
+
+    @Test
+    public void TC10() throws IOException
+    {
+        chromeDriver.get("http://localhost:3000/");
+        sleep(2000);
+        WebElement button = chromeDriver.findElement(By.className("_extra_db591_86"));
+        button.click();
+        WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
+        WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
+        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
+
+        Actions action = new Actions(chromeDriver);
+        action.sendKeys(txtEmail, "abcd@gmail.com").build().perform();
+        action.sendKeys(txtPass, "123456").build().perform();
+        btnDN.click();
+        sleep(2000);
+
+        WebElement btnJobIT = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/ul/li[2]/span[2]/a"));
+        btnJobIT.click();
+        sleep(5000);
+        WebElement AJobIT = chromeDriver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[3]/div"));
+        AJobIT.click();
+        sleep(5000);
+        WebElement btnApply = chromeDriver.findElement(By.className("_btn-apply_db591_201"));
+        btnApply.click();
+        sleep(5000);
+
+        //WebElement inputCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/form/div/div[3]/div/div/div[2]/div/div/span/div[1]/span/button/span[2]"));
+        //inputCV.click();
+        //sleep(5000);
+        // Gọi script AutoIt để upload file
+        //Runtime.getRuntime().exec("D:\\1.DoAnTN\\File_AutoIT\\uploadCVdangdoc.exe");
+        //sleep(5000);
+        WebElement btnGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]"));
+        sleep(3000);
+        btnGuiCV.click();
+        sleep(3000);
+
+        WebElement mesGuiCV = chromeDriver.findElement(By.xpath("/html/body/div[3]/div/div/div/div/span[2]"));
+        String lbmesGuiCVlValue = mesGuiCV.getText();
+        Assert.assertEquals(lbmesGuiCVlValue, "Vui long upload CV!");
     }
 
     @AfterMethod

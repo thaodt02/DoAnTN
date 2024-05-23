@@ -50,17 +50,18 @@ public class DangNhap {
         button.click();
         WebElement txtEmail = chromeDriver.findElement(By.id("basic_username"));
         WebElement txtPass = chromeDriver.findElement(By.id("basic_password"));
-        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button/span"));
+        WebElement btnDN = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[3]/div/div/div/div/button"));
 
         Actions action = new Actions(chromeDriver);
         action.sendKeys(txtEmail, "").build().perform();
         action.sendKeys(txtPass, "123456").build().perform();
         btnDN.click();
-        //WebElement lbStatusMail1 = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[1]/div[1]/div[2]/div[2]/div[1]/div"));
-        WebElement lbStatusMail = chromeDriver.findElement(By.className("ant-form-item-explain-error"));
-        String lbStatusMailValue = lbStatusMail.getText();
+        sleep(5000);
+        WebElement lbStatusMail1 = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[1]/div[1]/div[2]/div[2]/div[1]/div"));
+        //WebElement lbStatusMail = chromeDriver.findElement(By.className("ant-form-item-explain-error"));
+        String lbStatusMailValue = lbStatusMail1.getText();
         Assert.assertEquals(lbStatusMailValue, "Email khong duoc de trong!");
-        sleep(10000);
+        sleep(5000);
     }
 
     @Test
@@ -119,11 +120,12 @@ public class DangNhap {
         action.sendKeys(txtEmail, "admin@gmail.com").build().perform();
         action.sendKeys(txtPass, "").build().perform();
         btnDN.click();
-        //WebElement lbStatusPass1 = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[1]/div[1]/div[2]/div[2]/div[1]/div"));
-        WebElement lbStatusPass = chromeDriver.findElement(By.className("ant-form-item-explain-error"));
-        String lbStatusPassValue = lbStatusPass.getText();
+        sleep(5000);
+        WebElement lbStatusPass1 = chromeDriver.findElement(By.xpath("/html/body/div/div/main/div/section/form/div[2]/div[1]/div[2]/div[2]/div[1]/div"));
+        //WebElement lbStatusPass = chromeDriver.findElement(By.id("basic_password_help"));
+        String lbStatusPassValue = lbStatusPass1.getText();
         Assert.assertEquals(lbStatusPassValue, "Mat khau khong duoc de trong!");
-        sleep(10000);
+        sleep(5000);
     }
 
     @Test
@@ -141,7 +143,7 @@ public class DangNhap {
         action.sendKeys(txtPass, " 123456 ").build().perform();
         btnDN.click();
         sleep(5000);
-        WebElement lbMessage = chromeDriver.findElement(By.className("ant-form-item-explain-error"));
+        WebElement lbMessage = chromeDriver.findElement(By.className("ant-notification-notice-description"));
         String lbMessageValue = lbMessage.getText();
         Assert.assertEquals(lbMessageValue, "Mat khau nhap vao khong dung");
         sleep(10000);
